@@ -4,7 +4,7 @@ const routes = [
     path: '/',
     component: () => import('layouts/DefaultLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') }
+      { path: '', component: () => import('pages/PageIndex.vue') }
     ]
   }
 ]
@@ -13,7 +13,7 @@ const routes = [
 if (process.env.MODE !== 'ssr') {
   routes.push({
     path: '*',
-    component: () => import('pages/Error404.vue')
+    component: () => import('pages/PageError404.vue')
   })
 }
 
