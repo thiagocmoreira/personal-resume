@@ -1,5 +1,6 @@
 <template lang="pug">
   q-page.page-index.flex.flex-center.column
+    div.page-index__overlay
     h1.page-index__title Thiago Moreira
     p.page-index__text Coming Soon
     div.page-index__buttons.flex
@@ -22,8 +23,33 @@ export default {
 <style lang="stylus" scoped>
 @import '~variables'
 .page-index
-  background $grey-10
+  background radial-gradient(#333, $grey-10)
   color white
+
+  &__overlay
+    pointer-events none
+    position absolute
+    width 100%
+    height 100%
+    background repeating-linear-gradient(180deg, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0) 100%)
+    background-size auto 4px
+    z-index: 99
+    opacity: 0.3
+
+    &::before
+      content ''
+      pointer-events none
+      position absolute
+      display block
+      top 0
+      left 0
+      right 0
+      bottom 0
+      width 100%
+      height 100%
+      background-image linear-gradient(0deg, transparent 0%, rgba(99, 99, 99, 0.2) 2%, rgba(99, 99, 99, 0.8) 3%, rgba(99, 99, 99, 0.2) 3%, transparent 100%)
+      background-repeat no-repeat
+      animation scan 7.5s linear 0s infinite
 
   &__title
     font-size 42px
@@ -58,4 +84,9 @@ export default {
         font-size 20px
       @media(max-width: 414px)
         font-size 18px
+
+  @keyframes scan {
+    0%        { background-position: 0 -100vh }
+    35%, 100% { background-position: 0 100vh }
+  }
 </style>
